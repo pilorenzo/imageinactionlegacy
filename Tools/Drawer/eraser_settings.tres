@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bwuciyyob7qru"]
+
+[ext_resource type="Script" path="res://Tools/Drawer/DrawerSettings.cs" id="1_be0b4"]
+
+[resource]
+resource_name = "Eraser"
+script = ExtResource("1_be0b4")
+IsPen = false
+Width = 50
+DefaultColor = Color(0, 1, 1, 1)
+EndCapMode = 2
+BeginCapMode = 2
+Antialiased = false

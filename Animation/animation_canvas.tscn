@@ -1,0 +1,131 @@
+[gd_scene load_steps=6 format=3 uid="uid://brrx7i3e38kn2"]
+
+[ext_resource type="Script" path="res://Animation/AnimationController.cs" id="3_s7nue"]
+[ext_resource type="Texture2D" uid="uid://ch5a8fk2botfy" path="res://UI/Icons/Animation/Pause.png" id="4_1b4a6"]
+[ext_resource type="Texture2D" uid="uid://dvxei1gr6fsvu" path="res://UI/Icons/Animation/Play.png" id="5_2msmh"]
+[ext_resource type="Texture2D" uid="uid://7ohvu5slr6r1" path="res://UI/Icons/Animation/Exit.png" id="6_50wn5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ygraw"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="AnimationCanvas" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = -225.0
+offset_bottom = -225.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="AnimSprite" type="AnimatedSprite2D" parent="Control"]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_ygraw")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(150, 150)
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 5.0
+offset_top = 6.0
+offset_right = -5.0
+offset_bottom = 156.0
+grow_horizontal = 2
+script = ExtResource("3_s7nue")
+metadata/_edit_group_ = true
+
+[node name="Container" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -378.0
+offset_top = -64.0
+offset_right = 378.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/Container"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="PauseButton" type="TextureButton" parent="Panel/Container"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("4_1b4a6")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/Container"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="PlayButton" type="TextureButton" parent="Panel/Container"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("5_2msmh")
+
+[node name="MarginContainer3" type="MarginContainer" parent="Panel/Container"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="FrameBox" type="SpinBox" parent="Panel/Container"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+rounded = true
+alignment = 1
+prefix = "Frame: "
+
+[node name="MarginContainer4" type="MarginContainer" parent="Panel/Container"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="SpeedBox" type="SpinBox" parent="Panel/Container"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+min_value = -144.0
+max_value = 144.0
+value = 1.0
+rounded = true
+alignment = 1
+prefix = "FPS: "
+
+[node name="MarginContainer5" type="MarginContainer" parent="Panel/Container"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="ExitButton" type="TextureButton" parent="Panel/Container"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_50wn5")

@@ -1,0 +1,105 @@
+[gd_scene load_steps=3 format=3 uid="uid://kn42etneer42"]
+
+[ext_resource type="Script" path="res://MainMenu/License/LicenseExitButton.cs" id="2_2uvl3"]
+[ext_resource type="Script" path="res://MainMenu/License/LicenseTextButton.cs" id="2_s67rm"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BG" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(300, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -130.0
+offset_right = 275.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.273873, 0.273873, 0.273873, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer3" type="MarginContainer" parent="BG/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BG/VBoxContainer/MarginContainer3"]
+visible = false
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="BG/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_right = 150
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/VBoxContainer/MarginContainer3/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ImageInAction" type="Button" parent="BG/VBoxContainer/MarginContainer3/MarginContainer2/VBoxContainer" node_paths=PackedStringArray("_textLabel")]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Image In Action"
+script = ExtResource("2_s67rm")
+_textLabel = NodePath("../../../RichTextLabel")
+_licenseName = "LICENSE"
+
+[node name="Third-Parties" type="Button" parent="BG/VBoxContainer/MarginContainer3/MarginContainer2/VBoxContainer" node_paths=PackedStringArray("_textLabel")]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Third-Parties"
+script = ExtResource("2_s67rm")
+_textLabel = NodePath("../../../RichTextLabel")
+_licenseName = "LICENSE_THIRD-PARTY"
+
+[node name="MarginContainer" type="MarginContainer" parent="BG/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.18
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 10
+
+[node name="Return" type="Button" parent="BG/VBoxContainer/MarginContainer" node_paths=PackedStringArray("_buttonControl", "_textLabel")]
+layout_mode = 2
+text = "Back"
+script = ExtResource("2_2uvl3")
+_buttonControl = NodePath("../../MarginContainer3/MarginContainer2")
+_textLabel = NodePath("../../MarginContainer3/RichTextLabel")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+disable_3d = true
+mode = 3
+title = "Open a File"
+initial_position = 1
+size = Vector2i(765, 500)
+ok_button_text = "Open"
+dialog_hide_on_ok = true
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png ; PNG Images")

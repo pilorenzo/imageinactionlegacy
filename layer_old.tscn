@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://nlr63ntiyq5x"]
+
+[ext_resource type="Script" path="res://Drawing/BasicAddImage.cs" id="1_xj23x"]
+[ext_resource type="PackedScene" uid="uid://duskkvb7vexdu" path="res://Updater/sub_viewport.tscn" id="2_qo0wn"]
+[ext_resource type="Script" path="res://Updater/SpriteUpdater.cs" id="3_3deyv"]
+[ext_resource type="Script" path="res://Undo-Redo/UndoRedoScript.cs" id="4_nun7s"]
+
+[node name="Layer" type="Sprite2D"]
+centered = false
+script = ExtResource("1_xj23x")
+
+[node name="Updater" parent="." instance=ExtResource("2_qo0wn")]
+unique_name_in_owner = true
+texture_filter = 1
+script = ExtResource("3_3deyv")
+
+[node name="UndoRedo" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_nun7s")
+
+[node name="Undo" type="Node2D" parent="UndoRedo"]
+visible = false

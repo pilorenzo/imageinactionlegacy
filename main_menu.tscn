@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=3 uid="uid://cq2krutlghiil"]
+
+[ext_resource type="Script" path="res://MainMenu/NewButton.cs" id="1_mqxkc"]
+[ext_resource type="Script" path="res://MainMenu/LoadButton.cs" id="2_1dd60"]
+[ext_resource type="PackedScene" uid="uid://dgpm8qdj83qhq" path="res://MainMenu/new_project_options.tscn" id="2_lv66h"]
+[ext_resource type="Script" path="res://MainMenu/LicenseButton.cs" id="3_f745u"]
+[ext_resource type="PackedScene" uid="uid://kn42etneer42" path="res://MainMenu/License/license_menu.tscn" id="4_gjkb8"]
+[ext_resource type="Script" path="res://MainMenu/License/LicenseMenu.cs" id="5_k3kck"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6d6f5"]
+font_size = 48
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="BG" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.172549, 0.172549, 0.172549, 1)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -4.0
+offset_top = 52.0
+offset_right = -4.0
+offset_bottom = 119.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "Image In Action"
+label_settings = SubResource("LabelSettings_6d6f5")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.0
+offset_top = -40.0
+offset_right = 199.0
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NewButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "New
+"
+icon_alignment = 1
+script = ExtResource("1_mqxkc")
+
+[node name="LoadButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Load"
+script = ExtResource("2_1dd60")
+
+[node name="License" type="Button" parent="VBoxContainer" node_paths=PackedStringArray("_licenseMenu")]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "License
+"
+script = ExtResource("3_f745u")
+_licenseMenu = NodePath("../../LicenseMenu")
+
+[node name="LicenseMenu" parent="." instance=ExtResource("4_gjkb8")]
+visible = false
+script = ExtResource("5_k3kck")
+
+[node name="LoadProjectDialog" type="FileDialog" parent="."]
+unique_name_in_owner = true
+mode = 2
+title = "Open a Directory"
+initial_position = 1
+size = Vector2i(793, 500)
+content_scale_mode = 1
+ok_button_text = "Select Current Folder"
+dialog_hide_on_ok = true
+file_mode = 2
+access = 2
+
+[node name="NewProjectOptions" parent="." instance=ExtResource("2_lv66h")]
+unique_name_in_owner = true
+visible = false
+offset_top = -125.0
+offset_bottom = -125.0

@@ -1,0 +1,238 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgpm8qdj83qhq"]
+
+[ext_resource type="Script" path="res://MainMenu/NewProjectMenu/NewProjectMenu.cs" id="1_r8umn"]
+[ext_resource type="PackedScene" uid="uid://cd2w5rkg7uigk" path="res://UI/ColorPicking/my_color_picker.tscn" id="1_t4vi7"]
+[ext_resource type="Script" path="res://MainMenu/NewProjectMenu/ImportImageToggle.cs" id="3_xrfmo"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_r8umn")
+
+[node name="BG" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(300, 128)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -130.0
+offset_right = 275.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.273873, 0.273873, 0.273873, 1)
+
+[node name="GridContainer" type="GridContainer" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -258.0
+offset_top = -120.0
+offset_right = 260.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+metadata/_edit_group_ = true
+
+[node name="NameLabel" type="Label" parent="BG/GridContainer"]
+layout_mode = 2
+text = "Name"
+
+[node name="NameLine" type="LineEdit" parent="BG/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+caret_blink = true
+
+[node name="MarginContainer5" type="MarginContainer" parent="BG/GridContainer"]
+custom_minimum_size = Vector2(64, 8)
+layout_mode = 2
+
+[node name="MarginContainer6" type="MarginContainer" parent="BG/GridContainer"]
+custom_minimum_size = Vector2(64, 8)
+layout_mode = 2
+
+[node name="BGColorLabel" type="Label" parent="BG/GridContainer"]
+layout_mode = 2
+text = "Background Color"
+
+[node name="Color" parent="BG/GridContainer" instance=ExtResource("1_t4vi7")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+color = Color(1, 1, 1, 1)
+edit_alpha = false
+
+[node name="MarginContainer3" type="MarginContainer" parent="BG/GridContainer"]
+custom_minimum_size = Vector2(64, 8)
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="BG/GridContainer"]
+custom_minimum_size = Vector2(64, 8)
+layout_mode = 2
+
+[node name="FromFileLabel" type="Label" parent="BG/GridContainer"]
+layout_mode = 2
+text = "Start from imported image"
+
+[node name="FromFileButton" type="CheckButton" parent="BG/GridContainer" node_paths=PackedStringArray("_sizeLabel", "_sizeContainer", "_filePathLabel", "_filePathContainer")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("3_xrfmo")
+_sizeLabel = NodePath("../SizeLabel")
+_sizeContainer = NodePath("../SizeContainer")
+_filePathLabel = NodePath("../FilePathLabel")
+_filePathContainer = NodePath("../FilePathContainer")
+
+[node name="MarginContainer7" type="MarginContainer" parent="BG/GridContainer"]
+custom_minimum_size = Vector2(64, 8)
+layout_mode = 2
+
+[node name="MarginContainer8" type="MarginContainer" parent="BG/GridContainer"]
+custom_minimum_size = Vector2(64, 8)
+layout_mode = 2
+
+[node name="SizeLabel" type="Label" parent="BG/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Size"
+
+[node name="SizeContainer" type="HBoxContainer" parent="BG/GridContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BG/GridContainer/SizeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="BG/GridContainer/SizeContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "W:"
+horizontal_alignment = 1
+
+[node name="Width" type="SpinBox" parent="BG/GridContainer/SizeContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+min_value = 1.0
+max_value = 10000.0
+value = 512.0
+rounded = true
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="BG/GridContainer/SizeContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="BG/GridContainer/SizeContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "H:"
+horizontal_alignment = 1
+
+[node name="Height" type="SpinBox" parent="BG/GridContainer/SizeContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+min_value = 1.0
+max_value = 10000.0
+value = 512.0
+rounded = true
+alignment = 1
+
+[node name="FilePathLabel" type="Label" parent="BG/GridContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Image Path"
+
+[node name="FilePathContainer" type="HBoxContainer" parent="BG/GridContainer"]
+visible = false
+layout_mode = 2
+
+[node name="FilePathLine" type="LineEdit" parent="BG/GridContainer/FilePathContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+caret_blink = true
+
+[node name="BrowseButton" type="Button" parent="BG/GridContainer/FilePathContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Browse"
+
+[node name="MarginContainer" type="MarginContainer" parent="BG/GridContainer"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="BG/GridContainer"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+
+[node name="CancelContainer" type="HBoxContainer" parent="BG/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="BG/GridContainer/CancelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CancelButton" type="Button" parent="BG/GridContainer/CancelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Cancel"
+
+[node name="MarginContainer" type="MarginContainer" parent="BG/GridContainer/CancelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OkContainer" type="HBoxContainer" parent="BG/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="BG/GridContainer/OkContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="OkButton" type="Button" parent="BG/GridContainer/OkContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Ok"
+
+[node name="MarginContainer" type="MarginContainer" parent="BG/GridContainer/OkContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FileDialog" type="FileDialog" parent="."]
+disable_3d = true
+mode = 3
+title = "Open a File"
+initial_position = 1
+size = Vector2i(765, 500)
+ok_button_text = "Open"
+dialog_hide_on_ok = true
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png ; PNG Images")

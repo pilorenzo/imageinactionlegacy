@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd2w5rkg7uigk"]
+
+[ext_resource type="Script" path="res://UI/ColorPicking/MyPicker.cs" id="1_x6qol"]
+
+[node name="ColorPickerButton" type="ColorPickerButton"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_x6qol")

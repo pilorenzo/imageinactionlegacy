@@ -1,0 +1,543 @@
+[gd_scene load_steps=39 format=3 uid="uid://dsbswa1d28k3r"]
+
+[ext_resource type="Script" path="res://Manager/ProjectManager.cs" id="1_p4wb7"]
+[ext_resource type="Script" path="res://Manager/LayerManager.cs" id="2_xknvv"]
+[ext_resource type="Script" path="res://Drawing/DrawingCamera.cs" id="4_2oc50"]
+[ext_resource type="Script" path="res://Tools/Bucket/Bucket.cs" id="4_adtss"]
+[ext_resource type="Script" path="res://Drawing/MultiTouch.cs" id="4_t63uk"]
+[ext_resource type="Script" path="res://Tools/Drawer/BasicDrawer.cs" id="5_25itq"]
+[ext_resource type="Script" path="res://Tools/Selection/Lasso/LassoScript.cs" id="6_5m77g"]
+[ext_resource type="Resource" uid="uid://btcaygfk6q6l5" path="res://Tools/Drawer/drawer_settings.tres" id="8_jnyqg"]
+[ext_resource type="Texture2D" uid="uid://d3wta6amkamu7" path="res://Tools/Drawer/eraserCircle.png" id="9_aaj2k"]
+[ext_resource type="Script" path="res://Tools/Selection/Rectangle/RectangleSelScript.cs" id="9_qu6lj"]
+[ext_resource type="Texture2D" uid="uid://ha7gm8a1ld0r" path="res://UI/Icons/Pen.png" id="10_2y4j7"]
+[ext_resource type="Resource" uid="uid://bwuciyyob7qru" path="res://Tools/Drawer/eraser_settings.tres" id="10_vjk1a"]
+[ext_resource type="Texture2D" uid="uid://b6rvsmfmrp1q6" path="res://UI/Icons/Eraser.png" id="11_gqj5c"]
+[ext_resource type="PackedScene" uid="uid://cbr8tqo14t7ib" path="res://UI/UIButtons/tool_selection.tscn" id="11_r2oqi"]
+[ext_resource type="Texture2D" uid="uid://d30qg8v7g6xtx" path="res://UI/Icons/Bucket.png" id="12_qvreb"]
+[ext_resource type="Texture2D" uid="uid://yd58ked6oodt" path="res://UI/Icons/RectSelection.png" id="13_lc7ef"]
+[ext_resource type="Texture2D" uid="uid://dbqhadij7esyx" path="res://UI/Icons/Lasso.png" id="14_i7iki"]
+[ext_resource type="Texture2D" uid="uid://biqdxwwjbma8o" path="res://UI/Icons/copy.png" id="14_tduco"]
+[ext_resource type="Script" path="res://UI/UIButtons/CopyPasteUI.cs" id="14_wosuj"]
+[ext_resource type="PackedScene" uid="uid://cd2w5rkg7uigk" path="res://UI/ColorPicking/my_color_picker.tscn" id="16_0gki7"]
+[ext_resource type="Texture2D" uid="uid://c1106beaekjjj" path="res://UI/Icons/Paste.png" id="16_kc6m6"]
+[ext_resource type="Script" path="res://UI/UIButtons/Options/SaveButton.cs" id="16_wdtt2"]
+[ext_resource type="Texture2D" uid="uid://bpomwr0qkc4qd" path="res://UI/Icons/save.png" id="17_evtbu"]
+[ext_resource type="Script" path="res://UI/UIButtons/Options/OptionButton.cs" id="17_lcwt5"]
+[ext_resource type="Texture2D" uid="uid://dchbsm5ec1iam" path="res://UI/Icons/Options.png" id="18_t1gbu"]
+[ext_resource type="Script" path="res://UI/UIButtons/Options/ExitButton.cs" id="18_vb1og"]
+[ext_resource type="Texture2D" uid="uid://cj55bvph11tut" path="res://UI/Icons/exit.png" id="19_vcdpd"]
+[ext_resource type="Texture2D" uid="uid://cqqfvo404ffp" path="res://UI/Icons/Play.png" id="20_1ddvt"]
+[ext_resource type="Texture2D" uid="uid://bsny4gngcqkvx" path="res://UI/Icons/Undo.png" id="20_i2rd2"]
+[ext_resource type="Script" path="res://UI/UIButtons/Options/AnimationButton.cs" id="21_8mjl1"]
+[ext_resource type="Texture2D" uid="uid://cwvvg67hxdkf0" path="res://UI/Icons/Redo.png" id="21_tbd0j"]
+[ext_resource type="Script" path="res://UI/UIButtons/ToolSettings/SlideSettings.cs" id="22_jabhm"]
+[ext_resource type="PackedScene" uid="uid://d07idfdxncrnc" path="res://UI/FrameView/layer_adder.tscn" id="23_wujio"]
+[ext_resource type="Script" path="res://UI/FrameView/Scroller.cs" id="30_q0i4x"]
+[ext_resource type="PackedScene" uid="uid://brrx7i3e38kn2" path="res://Animation/animation_canvas.tscn" id="35_xs213"]
+[ext_resource type="PackedScene" uid="uid://bh5hpqkxgae6v" path="res://UI/FrameView/layer_options_menu.tscn" id="39_gfpwn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_shexw"]
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a18xk"]
+font_size = 24
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[node name="NodeManager" type="Node"]
+script = ExtResource("1_p4wb7")
+
+[node name="Bg" type="Sprite2D" parent="."]
+z_index = -1
+centered = false
+
+[node name="Art" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_xknvv")
+
+[node name="UserCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+ignore_rotation = false
+script = ExtResource("4_2oc50")
+_zoomSpeed = 0.04
+
+[node name="TouchInputReader" type="Node" parent="."]
+script = ExtResource("4_t63uk")
+
+[node name="SaveTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 60.0
+autostart = true
+
+[node name="Bucket" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_adtss")
+
+[node name="Drawer" type="Node2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+script = ExtResource("5_25itq")
+Settings = ExtResource("8_jnyqg")
+
+[node name="Eraser" type="Node2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+script = ExtResource("5_25itq")
+Settings = ExtResource("10_vjk1a")
+
+[node name="EraserCircle" type="Sprite2D" parent="Eraser"]
+visible = false
+texture = ExtResource("9_aaj2k")
+
+[node name="Lasso" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_5m77g")
+lineColor = Color(0.592157, 0.494118, 0, 0.392157)
+
+[node name="RectSel" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("9_qu6lj")
+lineColor = Color(0.592157, 0.494118, 0, 0.392157)
+
+[node name="DrawCanvas" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="Panel2" type="Panel" parent="DrawCanvas"]
+offset_left = 145.0
+offset_top = 18.0
+offset_right = 377.0
+offset_bottom = 82.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="DrawCanvas/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+script = ExtResource("22_jabhm")
+
+[node name="Label" type="Label" parent="DrawCanvas/Panel2/VBoxContainer2"]
+layout_mode = 2
+text = "Width  (5pt)"
+label_settings = SubResource("LabelSettings_shexw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="DrawCanvas/Panel2/VBoxContainer2"]
+custom_minimum_size = Vector2(128, 16)
+layout_mode = 2
+min_value = 1.0
+max_value = 60.0
+value = 5.0
+rounded = true
+
+[node name="CopyPastePanel" type="Panel" parent="DrawCanvas"]
+offset_left = 393.0
+offset_top = 13.0
+offset_right = 544.0
+offset_bottom = 83.0
+script = ExtResource("14_wosuj")
+
+[node name="Panel" type="Panel" parent="DrawCanvas/CopyPastePanel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 68.0
+offset_bottom = 67.0
+metadata/_edit_group_ = true
+
+[node name="TextureButton" type="TextureButton" parent="DrawCanvas/CopyPastePanel/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("14_tduco")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Panel3" type="Panel" parent="DrawCanvas/CopyPastePanel"]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 3.0
+offset_right = 147.0
+offset_bottom = 67.0
+metadata/_edit_group_ = true
+
+[node name="TextureButton" type="TextureButton" parent="DrawCanvas/CopyPastePanel/Panel3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("16_kc6m6")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="OptionsPanel" type="Panel" parent="DrawCanvas"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_top = 14.0
+offset_right = -8.0
+offset_bottom = 78.0
+grow_horizontal = 0
+script = ExtResource("17_lcwt5")
+metadata/_edit_group_ = true
+
+[node name="TextureButton" type="TextureButton" parent="DrawCanvas/OptionsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("18_t1gbu")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="SavePanel" type="Panel" parent="DrawCanvas"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_top = 89.0
+offset_right = -8.0
+offset_bottom = 153.0
+grow_horizontal = 0
+script = ExtResource("16_wdtt2")
+metadata/_edit_group_ = true
+
+[node name="TextureButton" type="TextureButton" parent="DrawCanvas/SavePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("17_evtbu")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="AnimationPanel" type="Panel" parent="DrawCanvas"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_top = 164.0
+offset_right = -8.0
+offset_bottom = 228.0
+grow_horizontal = 0
+script = ExtResource("21_8mjl1")
+metadata/_edit_group_ = true
+
+[node name="TextureButton" type="TextureButton" parent="DrawCanvas/AnimationPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("20_1ddvt")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="ExitPanel" type="Panel" parent="DrawCanvas"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_top = 238.0
+offset_right = -8.0
+offset_bottom = 302.0
+grow_horizontal = 0
+script = ExtResource("18_vb1og")
+metadata/_edit_group_ = true
+
+[node name="TextureButton" type="TextureButton" parent="DrawCanvas/ExitPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("19_vcdpd")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="TouchPanel" type="Panel" parent="DrawCanvas"]
+auto_translate_mode = 1
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -149.5
+offset_right = 250.0
+offset_bottom = 149.5
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="ColorRect" type="ColorRect" parent="DrawCanvas/TouchPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.411765, 0.411765, 0.411765, 1)
+
+[node name="GridContainer" type="GridContainer" parent="DrawCanvas/TouchPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 13.0
+offset_right = -8.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MoveSpeed" type="HBoxContainer" parent="DrawCanvas/TouchPanel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="DrawCanvas/TouchPanel/GridContainer/MoveSpeed"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Move speed"
+label_settings = SubResource("LabelSettings_a18xk")
+
+[node name="MoveSpinBox" type="SpinBox" parent="DrawCanvas/TouchPanel/GridContainer/MoveSpeed"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 1.0
+value = 10.0
+allow_greater = true
+
+[node name="ZoomSpeed" type="HBoxContainer" parent="DrawCanvas/TouchPanel/GridContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="DrawCanvas/TouchPanel/GridContainer/ZoomSpeed"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Zoom Speed"
+label_settings = SubResource("LabelSettings_a18xk")
+
+[node name="ZoomSpinBox" type="SpinBox" parent="DrawCanvas/TouchPanel/GridContainer/ZoomSpeed"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 1.0
+value = 10.0
+allow_greater = true
+
+[node name="RotSpeed" type="HBoxContainer" parent="DrawCanvas/TouchPanel/GridContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="DrawCanvas/TouchPanel/GridContainer/RotSpeed"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rot Speed"
+label_settings = SubResource("LabelSettings_a18xk")
+
+[node name="RotSpinBox" type="SpinBox" parent="DrawCanvas/TouchPanel/GridContainer/RotSpeed"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 1.0
+value = 10.0
+allow_greater = true
+
+[node name="CenterCameraContainer" type="HBoxContainer" parent="DrawCanvas/TouchPanel/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="DrawCanvas/TouchPanel/GridContainer/CenterCameraContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CenterCameraButton" type="Button" parent="DrawCanvas/TouchPanel/GridContainer/CenterCameraContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Center Camera"
+
+[node name="MarginContainer2" type="MarginContainer" parent="DrawCanvas/TouchPanel/GridContainer/CenterCameraContainer"]
+auto_translate_mode = 1
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DrawCanvas"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 132.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DrawCanvas/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="MarginContainer8" type="MarginContainer" parent="DrawCanvas/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(16, 12)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="DrawCanvas/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ColorPickerButton" parent="DrawCanvas/HBoxContainer/VBoxContainer/Panel" instance=ExtResource("16_0gki7")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="DrawCanvas/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(16, 8)
+layout_mode = 2
+
+[node name="Panel2" parent="DrawCanvas/HBoxContainer/VBoxContainer" instance=ExtResource("11_r2oqi")]
+modulate = Color(0.411765, 0.411765, 0.411765, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+_icon = ExtResource("10_2y4j7")
+
+[node name="MarginContainer2" type="MarginContainer" parent="DrawCanvas/HBoxContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Panel3" parent="DrawCanvas/HBoxContainer/VBoxContainer" instance=ExtResource("11_r2oqi")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+_icon = ExtResource("11_gqj5c")
+_toolName = &"Eraser"
+
+[node name="MarginContainer3" type="MarginContainer" parent="DrawCanvas/HBoxContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Panel4" parent="DrawCanvas/HBoxContainer/VBoxContainer" instance=ExtResource("11_r2oqi")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+_icon = ExtResource("12_qvreb")
+_toolName = &"Bucket"
+
+[node name="MarginContainer4" type="MarginContainer" parent="DrawCanvas/HBoxContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Panel5" parent="DrawCanvas/HBoxContainer/VBoxContainer" instance=ExtResource("11_r2oqi")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+_icon = ExtResource("14_i7iki")
+_toolName = &"Lasso"
+
+[node name="MarginContainer5" type="MarginContainer" parent="DrawCanvas/HBoxContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Panel6" parent="DrawCanvas/HBoxContainer/VBoxContainer" instance=ExtResource("11_r2oqi")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+_icon = ExtResource("13_lc7ef")
+_toolName = &"RectSel"
+
+[node name="MarginContainer6" type="MarginContainer" parent="DrawCanvas/HBoxContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Panel7" parent="DrawCanvas/HBoxContainer/VBoxContainer" instance=ExtResource("11_r2oqi")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+_icon = ExtResource("20_i2rd2")
+_toolName = &"Undo"
+
+[node name="MarginContainer7" type="MarginContainer" parent="DrawCanvas/HBoxContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="Panel8" parent="DrawCanvas/HBoxContainer/VBoxContainer" instance=ExtResource("11_r2oqi")]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+_icon = ExtResource("21_tbd0j")
+_toolName = &"Redo"
+
+[node name="MarginContainer" type="MarginContainer" parent="DrawCanvas/HBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="DrawCanvas"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -115.0
+offset_right = -10.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+vertical_scroll_mode = 0
+script = ExtResource("30_q0i4x")
+
+[node name="FrameUI" type="HBoxContainer" parent="DrawCanvas/ScrollContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+
+[node name="Button" parent="DrawCanvas/ScrollContainer/FrameUI" instance=ExtResource("23_wujio")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="AnimCanvas" parent="." instance=ExtResource("35_xs213")]
+unique_name_in_owner = true
+visible = false
+
+[node name="LayerOptionCanvas" parent="." instance=ExtResource("39_gfpwn")]
+unique_name_in_owner = true
+visible = false

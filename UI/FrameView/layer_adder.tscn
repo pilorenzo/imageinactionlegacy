@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d07idfdxncrnc"]
+
+[ext_resource type="Texture2D" uid="uid://chx80uuo4v2c5" path="res://UI/Icons/new_layer.png" id="1_7wx67"]
+[ext_resource type="Script" path="res://UI/FrameView/LayerAdder.cs" id="2_vwlqg"]
+
+[node name="Button" type="TextureButton"]
+custom_minimum_size = Vector2(128, 128)
+offset_right = 128.0
+offset_bottom = 128.0
+texture_normal = ExtResource("1_7wx67")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("2_vwlqg")

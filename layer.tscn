@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceneb6epv70x3"]
+
+[ext_resource type="Script" path="res://Drawing/BasicAddImage.cs" id="1_nyjj8"]
+[ext_resource type="PackedScene" uid="uid://duskkvb7vexdu" path="res://Updater/sub_viewport.tscn" id="3_xr4ig"]
+[ext_resource type="Script" path="res://Updater/SpriteUpdater.cs" id="4_cjvfg"]
+[ext_resource type="Script" path="res://Undo-Redo/UndoRedoScript.cs" id="4_e7o66"]
+[ext_resource type="Shader" path="res://Updater/sub_viewport.gdshader" id="5_i6vyr"]
+
+[node name="Layer" type="Sprite2D"]
+centered = false
+script = ExtResource("1_nyjj8")
+
+[node name="ActionList" type="Node2D" parent="."]
+
+[node name="UndoRedo" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_e7o66")
+
+[node name="Undo" type="Node2D" parent="UndoRedo"]
+visible = false
+
+[node name="Updater" parent="." instance=ExtResource("3_xr4ig")]
+unique_name_in_owner = true
+z_index = -9
+custom_minimum_size = Vector2(0, 0)
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 1
+grow_vertical = 1
+script = ExtResource("4_cjvfg")
+_shader = ExtResource("5_i6vyr")

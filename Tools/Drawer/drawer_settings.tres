@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://btcaygfk6q6l5"]
+
+[ext_resource type="Script" path="res://Tools/Drawer/DrawerSettings.cs" id="1_nx3ok"]
+
+[resource]
+resource_name = "Pen"
+script = ExtResource("1_nx3ok")
+IsPen = true
+Width = 5
+DefaultColor = Color(0, 0, 0, 1)
+EndCapMode = 2
+BeginCapMode = 2
+Antialiased = false
