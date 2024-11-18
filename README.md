@@ -4,6 +4,7 @@ ImageInAction is a simple application for creating drawings and animations on PC
 
 **WARNING:** This is only a prototype, and is full of bugs.
 
-## Example Video
+## Example Video (sped up to 1.5x)
 
-You can watch an example video [here](./doc/example_video.mp4) (sped up to 1.5x).
+https://github.com/user-attachments/assets/cacf4a4d-2f98-4b63-b499-760cd42c152b
+
